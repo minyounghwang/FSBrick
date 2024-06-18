@@ -1,0 +1,518 @@
+@prefix brick: <http://example.org/brick#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix tag: <http://example.org/tag#> .
+@prefix fsbrick: <http://example.org/fsbrick#> .
+
+############## FSBrick v0 additions ###############
+
+fsbrick:Fault a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Fault" ;
+    rdfs:subClassOf brick:Class,
+        brick:Status,
+        brick:Collection ;
+    sh:message "Fault is an exclusive top class." ;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Fault ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Class ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ], 
+        [ a sh:TripleRule ;
+            sh:object tag:Status ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Collection ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ];
+    brick:hasAssociatedTag tag:Fault .
+
+fsbrick:Fault_Nature a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Fault_Nature" ;
+    rdfs:subClassOf fsbrick:Fault,
+        brick:Class,
+        brick:Collection ;
+    skos:definition "Fault nature is describes the type of faults an HVAC component can experience."@en;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Fault ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Class ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ], 
+        [ a sh:TripleRule ;
+            sh:object tag:Fault_Nature ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Collection ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ];
+    brick:hasAssociatedTag tag:Fault_Nature .
+
+fsbrick:Valve_Stuck a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Valve Stuck" ;
+    rdfs:subClassOf fsbrick:Fault_Nature ;
+    skos:definition "Indicates the presence of a stuck valve fault"@en ;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Fault ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Point ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Status ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Fault_Nature ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ]  ;
+    brick:hasAssociatedTag tag:Fault,
+        tag:Point,
+        tag:Status,
+        tag:Fault_Nature .
+
+brick:Valve_Leakage a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Valve Leakage" ;
+    rdfs:subClassOf fsbrick:Fault_Nature ;
+    skos:definition "Indicates the presence of a leaking valve fault"@en ;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Fault ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Point ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Status ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Fault_Nature ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ]  ;
+    brick:hasAssociatedTag tag:Fault,
+        tag:Point,
+        tag:Status ,
+        tag:Fault_Nature .
+
+fsbrick:Coil_Fouling a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Coil Fouling" ;
+    rdfs:subClassOf fsbrick:Fault_Nature ;
+    skos:definition "Indicates the presence of a fouled coil fault"@en ;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Fault ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Point ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Status ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Fault_Nature ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ]  ;
+    brick:hasAssociatedTag tag:Fault,
+        tag:Point,
+        tag:Status ,
+        tag:Fault_Nature .
+
+fsbrick:Damper_Stuck a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Stuck Damper" ;
+    rdfs:subClassOf fsbrick:Fault_Nature ;
+    skos:definition "Indicates the presence of a stuck damper fault"@en ;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Fault ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Point ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Status ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Fault_Nature ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ]  ;
+    brick:hasAssociatedTag tag:Fault,
+        tag:Point,
+        tag:Status ,
+        tag:Fault_Nature .
+
+fsbrick:Damper_Leakage a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Leaking Damper" ;
+    rdfs:subClassOf fsbrick:Fault_Nature ;
+    skos:definition "Indicates the presence of a leaking damper fault"@en ;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Fault ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Point ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Status ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Fault_Nature ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ]  ;
+    brick:hasAssociatedTag tag:Fault,
+        tag:Point,
+        tag:Status ,
+        tag:Fault_Nature .
+
+fsbrick:Damper_Malfunctioning a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Malfunctioning Damper" ;
+    rdfs:subClassOf fsbrick:Fault_Nature ;
+    skos:definition "Indicates the presence of a malfunctioning damper fault"@en ;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Fault ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Point ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Status ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Fault_Nature ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ]  ;
+    brick:hasAssociatedTag tag:Fault,
+        tag:Point,
+        tag:Status ,
+        tag:Fault_Nature .
+
+fsbrick:Fan_Stuck a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Stuck Fan" ;
+    rdfs:subClassOf fsbrick:Fault_Nature ;
+    skos:definition "Indicates the presence of a stuck fan fault"@en ;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Fault ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Point ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Status ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Fault_Nature ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ]  ;
+    brick:hasAssociatedTag tag:Fault,
+        tag:Point,
+        tag:Status ,
+        tag:Fault_Nature .
+
+fsbrick:Fan_Malfunctioning a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Malfunctioning Fan" ;
+    rdfs:subClassOf fsbrick:Fault_Nature ;
+    skos:definition "Indicates the presence of a malfunctioning fan fault"@en ;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Fault ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Point ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Status ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Fault_Nature ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ]  ;
+    brick:hasAssociatedTag tag:Fault,
+        tag:Point,
+        tag:Status ,
+        tag:Fault_Nature .
+
+fsbrick:Filter_Block a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Blocked filter" ;
+    rdfs:subClassOf fsbrick:Fault_Nature ;
+    skos:definition "Indicates the presence of a blocked filter fault"@en ;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Fault ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Point ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Status ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Fault_Nature ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ]  ;
+    brick:hasAssociatedTag tag:Fault,
+        tag:Point,
+        tag:Status ,
+        tag:Fault_Nature .
+
+fsbrick:Air_Plenum_Block a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Blocked air plenum" ;
+    rdfs:subClassOf fsbrick:Fault_Nature ;
+    skos:definition "Indicates the presence of a blocked air plenum fault"@en ;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Fault ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Point ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Status ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Fault_Nature ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ]  ;
+    brick:hasAssociatedTag tag:Fault,
+        tag:Point,
+        tag:Status ,
+        tag:Fault_Nature .
+
+fsbrick:Air_Plenum_Leakage a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Leaking air plenum" ;
+    rdfs:subClassOf fsbrick:Fault_Nature ;
+    skos:definition "Indicates the presence of a leaking air plenum fault"@en ;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Fault ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Point ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Status ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Fault_Nature ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ]  ;
+    brick:hasAssociatedTag tag:Fault,
+        tag:Point,
+        tag:Status ,
+        tag:Fault_Nature .
+
+fsbrick:Pump_Stuck a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Stuck Pump" ;
+    rdfs:subClassOf fsbrick:Fault_Nature ;
+    skos:definition "Indicates the presence of a stuck pump fault"@en ;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Fault ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Point ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Status ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Fault_Nature ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ]  ;
+    brick:hasAssociatedTag tag:Fault,
+        tag:Point,
+        tag:Status ,
+        tag:Fault_Nature .
+
+fsbrick:Pump_Leakage a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Leaking Pump" ;
+    rdfs:subClassOf fsbrick:Fault_Nature ;
+    skos:definition "Indicates the presence of a leaking pump fault"@en ;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Fault ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Point ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Status ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Fault_Nature ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ]  ;
+    brick:hasAssociatedTag tag:Fault,
+        tag:Point,
+        tag:Status ,
+        tag:Fault_Nature .
+
+fsbrick:hasFault a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "Has fault" ;
+    owl:inverseOf fsbrick:isFaultOf ;
+    skos:definition "The subject is composed in part of the entity given by the object"@en .
+
+fsbrick:isFaultOf a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "Is fault of" ;
+    owl:inverseOf fsbrick:hasFault .
+
+fsbrick:hasSeverity a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "Has fault severity" ;
+    owl:inverseOf fsbrick:isSeverityOf ;
+    skos:definition "The subject is composed in part of the entity given by the object"@en .
+
+fsbrick:isSeverityOf a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "Is fault severity of" ;
+    owl:inverseOf fsbrick:hasSeverity .
+
+fsbrick:hasSymptom a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "Has symptom" ;
+    owl:inverseOf fsbrick:isSymptomOf ;
+    skos:definition "The subject is composed in part of the entity given by the object"@en .
+
+fsbrick:isSymptomOf a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "Is symptom of" ;
+    owl:inverseOf fsbrick:hasSymptom .
+
+########### End of FSbrick v0 additions ############
+
+########### FSbrick v1 additions ############
+
+fsbrick:hasGroupedSymptom a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "Has grouped symptom" ;
+    owl:inverseOf fsbrick:isGroupedSymptomOf ;
+    skos:definition "The subject is composed in part of the entity given by the object"@en .
+
+fsbrick:isGroupedSymptomOf a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "Is grouped symptom of" ;
+    owl:inverseOf fsbrick:hasGroupedSymptom .
+
+fsbrick:hasSymptomProb a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "Has symptom probability" ;
+    owl:inverseOf fsbrick:isSymptomProbOf ;
+    skos:definition "The subject is composed in part of the entity given by the object"@en .
+
+fsbrick:isSymptomProbOf a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "Is symptom prob of" ;
+    owl:inverseOf fsbrick:hasSymptomProb .
+
+fsbrick:Symptom a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Symptom" ;
+    rdfs:subClassOf brick:Class,
+        brick:Status,
+        brick:Collection ;
+    sh:message "Symptom is an exclusive top class." ;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Collection ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Class ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ], 
+        [ a sh:TripleRule ;
+            sh:object tag:Status ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Symptom ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ];
+    brick:hasAssociatedTag tag:Symptom .
+
+fsbrick:Grouped_Symptom a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "GroupedSymptom" ;
+    rdfs:subClassOf fsbrick:Symptom,
+        brick:Collection,
+        brick:Status ;
+    sh:message "Grouped_Symptom is a combination of symptoms occurring at the same time." ;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Collection ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Status ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ], 
+        [ a sh:TripleRule ;
+            sh:object tag:Symptom ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Grouped_Symptom ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ] ;
+    brick:hasAssociatedTag tag:Grouped_Symptom .
+
+########### End of FSbrick v1 additions ############
